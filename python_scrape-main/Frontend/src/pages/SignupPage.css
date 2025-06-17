@@ -1,0 +1,132 @@
+/* SignupPage.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #eef5ff, #d6e6ff);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Container styling */
+.signup-container {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.signup-container h2 {
+  margin-bottom: 25px;
+  color: #2e5aac;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+/* Form styling */
+.signup-form input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.signup-form input:focus {
+  border-color: #2e5aac;
+  box-shadow: 0 0 0 2px rgba(46, 90, 172, 0.15);
+  outline: none;
+}
+
+.signup-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2e5aac;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s ease;
+}
+
+.signup-form button:hover {
+  background-color: #204b99;
+}
+
+/* Message styles */
+.message {
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.message.success,
+.message.error {
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.message.success {
+  background-color: #e6f7ec;
+  border: 1px solid #3cba54;
+  color: #2e7d32;
+}
+
+.message.error {
+  background-color: #ffe6e6;
+  border: 1px solid #d32f2f;
+  color: #b71c1c;
+}
+
+/* Login link */
+.login-link {
+  margin-top: 25px;
+  font-size: 15px;
+  color: #333;
+}
+
+.login-link a {
+  color: #2e5aac;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

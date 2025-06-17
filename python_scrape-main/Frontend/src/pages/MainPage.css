@@ -1,0 +1,14 @@
+.main-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+    font-family: Mulish;
+}
+
+.heading{
+    font-size: 2rem;
+    color: #4c4c4c;
+    font-weight: 700;
+}

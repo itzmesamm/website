@@ -1,0 +1,43 @@
+.nav {
+  background-color: #ffffff;
+  font-family: Mulish;
+  color: #434343;
+  padding: 2rem 1rem 2rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  max-width: 90%;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  
+}
+.bi-bar-chart-fill{
+    color: #434343;
+    font-size: 1.35rem;
+    padding-right: 0.5rem;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #434343;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  opacity: 0.5;
+  color:#434343;
+}

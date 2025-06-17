@@ -1,0 +1,18 @@
+.price-history-container {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f0f8ff;
+  border: 2px solid #007bff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.15);
+}
+
+.no-data {
+  padding: 20px;
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  font-weight: 500;
+  border-radius: 8px;
+  text-align: center;
+}
