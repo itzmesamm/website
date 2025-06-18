@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchWishlist, removeFromWishlist } from "../api/api";
 import "./WishlistPage.css";
 
 function WishlistPage() {
   const [wishlist, setWishlist] = useState([]);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     if (!token) {
-      setError("Please log in to view your wishlist.");
+      // Redirect to login with message and redirect path
+      navigate("/login?redirect=/wishlist&message=Please%20login%20to%20view%20your%20wishlist");
       return;
     }
 
@@ -28,7 +31,7 @@ function WishlistPage() {
     };
 
     loadWishlist();
-  }, []);
+  }, [navigate]);
 
   const handleRemove = async (productId) => {
     const token = localStorage.getItem("authToken");

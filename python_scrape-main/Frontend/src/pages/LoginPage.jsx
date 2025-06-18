@@ -1,15 +1,26 @@
-// login.jsx
-import React, { useState } from "react";
-import { loginUser, fetchUsers } from "../api/api";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { loginUser } from "../api/api";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import "./LoginPage.css";
 
 function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
-  const [token, setToken] = useState(null);
   const [error, setError] = useState("");
-  const [users, setUsers] = useState([]);
+  const [infoMsg, setInfoMsg] = useState("");
+
   const navigate = useNavigate();
+  const { fetchUser } = useContext(AuthContext);
+  const [searchParams] = useSearchParams();
+
+  const redirectPath = searchParams.get("redirect") || "/";
+  const messageFromRedirect = searchParams.get("message");
+
+  useEffect(() => {
+    if (messageFromRedirect) {
+      setInfoMsg(decodeURIComponent(messageFromRedirect));
+    }
+  }, [messageFromRedirect]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,17 +28,10 @@ function LoginPage() {
     const result = await loginUser(form);
 
     if (result.token) {
-      setToken(result.token);
       localStorage.setItem("authToken", result.token);
+      await fetchUser(); // update global user state
       setForm({ email: "", password: "" });
-
-      const userList = await fetchUsers();
-      if (userList.error) {
-        setError(userList.error);
-      } else {
-        setUsers(userList.signed_up_users || []);
-        navigate("/SearchPage"); // ✅ Redirect to main page
-      }
+      navigate(redirectPath); // Redirect to original page
     } else {
       setError(result.error || "Login failed");
     }
@@ -36,6 +40,9 @@ function LoginPage() {
   return (
     <div className="login-container">
       <h2>Login</h2>
+      {infoMsg && <p className="message info">ℹ️ {infoMsg}</p>}
+      {error && <p className="message error">❌ {error}</p>}
+
       <form onSubmit={handleLogin} className="login-form">
         <input
           type="email"
@@ -53,24 +60,6 @@ function LoginPage() {
         />
         <button type="submit">Login</button>
       </form>
-
-      {error && <p className="message error">❌ {error}</p>}
-      {token && !error && (
-        <p className="message success">✅ Logged in! Token saved.</p>
-      )}
-
-      {users.length > 0 && (
-        <div className="user-list">
-          <h3>Users:</h3>
-          <ul>
-            {users.map((u) => (
-              <li key={u.id || u._id}>
-                {u.username} - {u.email}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
 
       <p className="signup-link">
         Don't have an account? <Link to="/signup">Sign up</Link>

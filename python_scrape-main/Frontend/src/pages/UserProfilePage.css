@@ -1,0 +1,102 @@
+/* src/pages/UserProfilePage.css */
+
+.profile-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0f0ff, #fefefe);
+  padding: 20px;
+}
+
+.profile-card {
+  display: flex;
+  flex-wrap: wrap;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+}
+
+.profile-left {
+  flex: 1 1 250px;
+  background: #007bff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.profile-icon {
+  font-size: 120px;
+}
+
+.profile-right {
+  flex: 2 1 500px;
+  padding: 30px;
+  background: #f9f9ff;
+}
+
+.profile-right h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.profile-info p {
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #444;
+}
+
+.profile-actions {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.logout-btn, .delete-btn {
+  padding: 10px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.logout-btn:hover {
+  background-color: #0056b3;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #b32b37;
+}
+
+@media (max-width: 768px) {
+  .profile-card {
+    flex-direction: column;
+  }
+
+  .profile-left,
+  .profile-right {
+    width: 100%;
+    text-align: center;
+  }
+
+  .profile-right {
+    padding: 20px;
+  }
+}

@@ -1,43 +1,54 @@
+/* src/components/Nav.css */
+
 .nav {
-  background-color: #ffffff;
-  font-family: Mulish;
-  color: #434343;
-  padding: 2rem 1rem 2rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  margin: auto;
-  max-width: 90%;
+  padding: 15px 30px;
+  background: linear-gradient(to right, #ffffff, #e6f0ff);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .nav-logo {
-  font-size: 1.5rem;
-  
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #007bff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.bi-bar-chart-fill{
-    color: #434343;
-    font-size: 1.35rem;
-    padding-right: 0.5rem;
-}
+
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
+  gap: 25px;
+  align-items: center;
 }
 
 .nav-link {
   text-decoration: none;
-  color: #434343;
+  color: #222;
   font-weight: 500;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  opacity: 0.5;
-  color:#434343;
+  color: #007bff;
+  transform: translateY(-1px);
+}
+
+.user-link {
+  font-weight: 600;
+  color: #007bff;
+}
+
+.user-link:hover {
+  color: #0056b3;
 }

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import SignupView, LoginView, UserList, LogoutView, WishlistView,AddToWishlistView, RemoveFromWishlistView
+from .views import SignupView, LoginView, UserList, LogoutView, WishlistView, AddToWishlistView, RemoveFromWishlistView, UserProfileView , DeleteUserView 
 
 urlpatterns = [
     path('signup/', SignupView.as_view(), name='signup'),
@@ -9,5 +9,10 @@ urlpatterns = [
     path("wishlist/", WishlistView.as_view(), name="wishlist"),
     path("wishlist/add/", AddToWishlistView.as_view(), name="wishlist-add"),
     path("wishlist/remove/", RemoveFromWishlistView.as_view(), name="wishlist-remove"),
+    path('profile/', UserProfileView.as_view()),
+    path('delete/', DeleteUserView.as_view(), name='user-delete'),
+
+
+
 ]
 

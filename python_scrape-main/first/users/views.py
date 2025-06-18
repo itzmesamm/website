@@ -13,7 +13,6 @@ from rest_framework.exceptions import AuthenticationFailed
 from products.mongo_models import Product  # <- Adjust if needed
 from bson import ObjectId
 
-
 SECRET_KEY = settings.SECRET_KEY
 
 
@@ -156,3 +155,25 @@ class RemoveFromWishlistView(APIView):
             user.save()
             return Response({"message": "Removed from wishlist"}, status=200)
         return Response({"error": "Product not found in wishlist"}, status=400)
+
+class UserProfileView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        return Response({
+            "username": user.username,
+            "email": user.email,
+            "password": "********",  # masked
+            "date_joined": user.date_joined,
+        })
+    
+class DeleteUserView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def delete(self, request):
+        user = request.user
+        user.delete()
+        return Response({"message": "User deleted."}, status=204)

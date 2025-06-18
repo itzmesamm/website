@@ -1,19 +1,20 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from "react";
 import SearchResultPage from "./pages/SearchResultPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
-import MainPage from "./pages/MainPage"
-import Nav from './components/Nav'; 
+import MainPage from "./pages/MainPage";
+import Nav from './components/Nav';
 import Signup from "./pages/SignupPage";
 import Login from "./pages/LoginPage";
 import WishlistPage from "./pages/WishlistPage";
+import UserProfilePage from './pages/UserProfilePage';
+import { AuthProvider } from "./context/AuthContext";
+import { useLocation } from "react-router-dom";
 
-// Helper component to conditionally render Nav
+// Move Layout INSIDE Routes for reactivity
 function Layout({ children }) {
   const location = useLocation();
-  // Agar current path /signup ya /login hai to navbar mat dikhao
-  const hideNavPaths = ["/signup", "/login"];
-  const hideNav = hideNavPaths.includes(location.pathname);
+  const hideNav = ["/signup", "/login"].includes(location.pathname);
 
   return (
     <>
@@ -23,19 +24,28 @@ function Layout({ children }) {
   );
 }
 
+function AppRoutes() {
+  return (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/search" element={<SearchResultPage />} />
+        <Route path="/product/:productId" element={<ProductDetailPage />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/wishlist" element={<WishlistPage />} />
+        <Route path="/profile" element={<UserProfilePage />} />
+      </Routes>
+    </Layout>
+  );
+}
+
 function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<MainPage/>} />
-          <Route path="/search" element={<SearchResultPage />} />
-          <Route path="/product/:productId" element={<ProductDetailPage />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/wishlist" element={<WishlistPage />} />
-        </Routes>
-      </Layout>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
     </Router>
   );
 }
